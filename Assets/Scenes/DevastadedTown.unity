@@ -10532,9 +10532,9 @@ MonoBehaviour:
   runBackSpeed: 5
   crouchSpeed: 2
   crouchBackSpeed: 1
-  dir: {x: 0, y: 0, z: 0}
   hzInput: 0
   vInput: 0
+  dir: {x: 0, y: 0, z: 0}
   groundYOffset: 0
   groundMask:
     serializedVersion: 2
@@ -10614,6 +10614,25 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!1 &1564318429 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1186413494234004, guid: 03228ebb154d829419e0ed3940352524, type: 3}
+  m_PrefabInstance: {fileID: 1472139682}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &1564318432
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564318429}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.7
+  m_Height: 2
+  m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &1567778286
 GameObject:

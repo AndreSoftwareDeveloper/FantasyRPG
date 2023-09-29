@@ -5,11 +5,11 @@ public class displayFrags : MonoBehaviour
 {
     public Canvas starText;
     public TextMeshProUGUI textMeshPro;
-    string toDisplay;
+    string const_text_info;
 
     void Update()
     {
-        toDisplay = "ILOŒÆ POKONANYCH ZOMBIE: ";
-        textMeshPro.text = toDisplay + enemyHealth.killed_enemies.ToString();
+        const_text_info = "NUMBER OF DEFEATED ORCS: ";
+        textMeshPro.text = const_text_info + enemyHealth.killed_enemies.ToString();
     }
 }

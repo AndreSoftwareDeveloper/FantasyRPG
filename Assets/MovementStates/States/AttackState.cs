@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackState : MovementBaseState
@@ -7,15 +6,16 @@ public class AttackState : MovementBaseState
     public override void EnterState(MovementStateManager movement)
     {
         movement.anim.SetBool("Attacking", true);
+        movement.StartCoroutine(ExitStateCoroutine(movement, movement.Idle));
     }
+    
+    public override void UpdateState(MovementStateManager movement) { }
 
-    public override void UpdateState(MovementStateManager movement)
+    IEnumerator ExitStateCoroutine(MovementStateManager movement, MovementBaseState state)
     {
-        ExitState(movement, movement.Idle);
-    }
+        //yield return new WaitForSeconds(movement.anim.GetCurrentAnimatorStateInfo(0).length);
+        yield return new WaitForSeconds(0.5f);
 
-    void ExitState(MovementStateManager movement, MovementBaseState state)
-    {
         movement.anim.SetBool("Attacking", false);
         movement.SwitchState(state);
     }
