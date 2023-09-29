@@ -1,29 +1,27 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class MovementStateManager : MonoBehaviour
 {
     #region Movement
-    public float currentMoveSpeed;
-    public float walkSpeed =3, walkBackSpeed =2;
-    public float runSpeed = 7, runBackSpeed = 5;
-    public float crouchSpeed = 2, crouchBackSpeed = 1;
-
-    [HideInInspector] public Vector3 dir;
-    [HideInInspector] public float hzInput, vInput;
-    CharacterController controller;
+        public float currentMoveSpeed, walkSpeed, walkBackSpeed, runSpeed, runBackSpeed, crouchSpeed, crouchBackSpeed;
+        bool attack;
+        [HideInInspector] public float hzInput, vInput;  
+        [HideInInspector] public Vector3 dir;        
+        CharacterController controller;
     #endregion
 
     #region GroundCheck
-    [SerializeField] float groundYOffset;
-    [SerializeField] LayerMask groundMask;
-    Vector3 spherePos;
+        [SerializeField] float groundYOffset;
+        [SerializeField] LayerMask groundMask;
+        Vector3 spherePos;
     #endregion
 
     #region Gravity
-    [SerializeField] float gravity = -9.81f;
-    Vector3 velocity;
+        [SerializeField] float gravity = -9.81f;
+        Vector3 velocity;
     #endregion
 
     MovementBaseState currentState;
@@ -32,6 +30,7 @@ public class MovementStateManager : MonoBehaviour
     public WalkState Walk = new WalkState();
     public CrouchState Crouch = new CrouchState();
     public RunState Run = new RunState();
+    public AttackState Attack = new AttackState();
 
     [HideInInspector] public Animator anim;
 
@@ -45,6 +44,7 @@ public class MovementStateManager : MonoBehaviour
     void Update()
     {
         GetDirectionAndMove();
+        SwordAttack();
         Gravity();
 
         anim.SetFloat("hzInput", hzInput);
@@ -78,9 +78,21 @@ public class MovementStateManager : MonoBehaviour
 
     void Gravity()
     {
-        if (!IsGrounded()) velocity.y += gravity * Time.deltaTime;
-        else if (velocity.y < 0) velocity.y = -2;
+        if (!IsGrounded()) 
+            velocity.y += gravity * Time.deltaTime;
+        else if (velocity.y < 0) 
+            velocity.y = -2;
 
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    void SwordAttack()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("attack_debug");
+            SwitchState(Attack);
+        }
+            
     }
 }
