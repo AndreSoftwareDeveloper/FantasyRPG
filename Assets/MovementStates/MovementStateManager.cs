@@ -7,7 +7,6 @@ public class MovementStateManager : MonoBehaviour
 {
     #region Movement
         public float currentMoveSpeed, walkSpeed, walkBackSpeed, runSpeed, runBackSpeed, crouchSpeed, crouchBackSpeed;
-        bool attack;
         [HideInInspector] public float hzInput, vInput;  
         [HideInInspector] public Vector3 dir;        
         CharacterController controller;
@@ -46,8 +45,25 @@ public class MovementStateManager : MonoBehaviour
 
         anim.SetFloat("hzInput", hzInput);
         anim.SetFloat("vInput", vInput);
-        currentState.UpdateState(this);        
+        currentState.UpdateState(this);
+        
     }
+
+    void OnControllerColliderHit(ControllerColliderHit hit) {
+        Vector3 playerForward = transform.forward;
+        Vector3 hitDirection = hit.point - transform.position;
+
+        playerForward.Normalize();
+        hitDirection.Normalize();
+
+        Debug.Log(playerForward);
+
+        float dotProduct = Vector3.Dot(playerForward, hitDirection);
+
+        if (dotProduct > 0.9f)
+            Debug.Log(hit.gameObject.tag);    
+}
+
 
     public void SwitchState(MovementBaseState state) {
         currentState = state;
