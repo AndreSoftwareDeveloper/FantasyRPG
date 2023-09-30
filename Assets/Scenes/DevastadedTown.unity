@@ -7637,7 +7637,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -352.79984, y: -139}
+  m_AnchoredPosition: {x: -534, y: -226}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1291602520
@@ -9538,6 +9538,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ork berserk prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1186413494234004, guid: 03228ebb154d829419e0ed3940352524, type: 3}
+      propertyPath: m_TagString
+      value: enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 4910303872038388, guid: 03228ebb154d829419e0ed3940352524, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -9830,6 +9834,11 @@ Transform:
   m_Father: {fileID: 237444214}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1517671666 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1376454829852232, guid: 9ce84a6e766a4d44b9a6b0a418f40820, type: 3}
+  m_PrefabInstance: {fileID: 171604368}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1528285360
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10620,7 +10629,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1186413494234004, guid: 03228ebb154d829419e0ed3940352524, type: 3}
   m_PrefabInstance: {fileID: 1472139682}
   m_PrefabAsset: {fileID: 0}
---- !u!136 &1564318432
+--- !u!136 &1564318435
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10630,7 +10639,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.7
+  m_Radius: 0.86
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
@@ -13068,6 +13077,20 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4941282239900594, guid: 9ce84a6e766a4d44b9a6b0a418f40820, type: 3}
   m_PrefabInstance: {fileID: 171604368}
   m_PrefabAsset: {fileID: 0}
+--- !u!64 &2043363105
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1517671666}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 9daa6e899bbe4f14ca71cd13efb9b431, type: 3}
 --- !u!1 &2064858502
 GameObject:
   m_ObjectHideFlags: 0
