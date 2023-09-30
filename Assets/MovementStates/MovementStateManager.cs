@@ -40,8 +40,7 @@ public class MovementStateManager : MonoBehaviour
 
     void Update() {
         GetDirectionAndMove();
-        Gravity();
-        SwordAttack();
+        Gravity();        
 
         anim.SetFloat("hzInput", hzInput);
         anim.SetFloat("vInput", vInput);
@@ -50,18 +49,7 @@ public class MovementStateManager : MonoBehaviour
     }
 
     void OnControllerColliderHit(ControllerColliderHit hit) {
-        Vector3 playerForward = transform.forward;
-        Vector3 hitDirection = hit.point - transform.position;
-
-        playerForward.Normalize();
-        hitDirection.Normalize();
-
-        Debug.Log(playerForward);
-
-        float dotProduct = Vector3.Dot(playerForward, hitDirection);
-
-        if (dotProduct > 0.9f)
-            Debug.Log(hit.gameObject.tag);    
+        SwordAttack(hit);
 }
 
 
@@ -95,9 +83,21 @@ public class MovementStateManager : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
     }
 
-    void SwordAttack() {
-        if (Input.GetMouseButtonDown(0))
+    void SwordAttack(ControllerColliderHit target) {
+        if ( (Input.GetMouseButtonDown(0)) && (target.gameObject.tag == "enemy") ) {
             anim.SetBool("Attacking", true);    // sword swing on mouse click
+
+            Vector3 playerForward = transform.forward;
+            Vector3 hitDirection = target.point - transform.position;
+
+            playerForward.Normalize();
+            hitDirection.Normalize();
+            
+            float dotProduct = Vector3.Dot(playerForward, hitDirection);
+
+            if (dotProduct > 0.35f)
+                Debug.Log(target.gameObject.tag);  
+            }
 
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack") && (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.8f) )        
             anim.SetBool("Attacking", false);   // idle pose after attack  
