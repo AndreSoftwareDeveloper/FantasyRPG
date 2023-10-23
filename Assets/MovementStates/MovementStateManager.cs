@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +12,13 @@ public class MovementStateManager : MonoBehaviour
         bool isAttacking;  
     #endregion
 
+    # region MovementStates
+        public IdleState Idle = new IdleState();
+        public WalkState Walk = new WalkState();
+        public CrouchState Crouch = new CrouchState();
+        public RunState Run = new RunState();
+    #endregion
+
     #region GroundCheck
         [SerializeField] float groundYOffset;
         [SerializeField] LayerMask groundMask;
@@ -25,13 +31,8 @@ public class MovementStateManager : MonoBehaviour
     #endregion
 
     MovementBaseState currentState;
-
-    public IdleState Idle = new IdleState();
-    public WalkState Walk = new WalkState();
-    public CrouchState Crouch = new CrouchState();
-    public RunState Run = new RunState();
-
     [HideInInspector] public Animator anim;
+    public GameObject enemy;
 
     void Start() {
         anim = GetComponent<Animator>();
@@ -50,29 +51,17 @@ public class MovementStateManager : MonoBehaviour
         isAttacking = anim.GetBool("Attacking");
         Vector3 playerPosition = transform.position;
 
-        // Rzuć promień wzdłuż osi Z od pozycji gracza
+        // Cast a ray towards Z axis from the player's position
         RaycastHit hit;
-        if (isAttacking && Physics.Raycast(playerPosition, transform.forward, out hit))
-        {            
+        if (isAttacking && Physics.Raycast(playerPosition, transform.forward, out hit))                    
             if (hit.collider.CompareTag("enemy")) // Check if object with tag "enemy" was hitten
-                Debug.Log("d00pa");            
-        }
+            {
+                Debug.Log("Hit");
+                enemy = hit.collider.gameObject;
+            }
+                           
+        
     }
-
-
-    
-
-    // void OnControllerColliderHit(ControllerColliderHit target) {
-    //     if (isAttacking) {
-    //         Vector3 playerForward = transform.forward;
-    //         Vector3 hitDirection = target.point - transform.position;
-    //         playerForward.Normalize();
-    //         hitDirection.Normalize();            
-    //         float dotProduct = Vector3.Dot(playerForward, hitDirection);
-    //         if (dotProduct > 0.35f)
-    //             Debug.Log(target.gameObject.tag);  
-    //     }        
-    // }
 
     public void SwitchState(MovementBaseState state) {
         currentState = state;
