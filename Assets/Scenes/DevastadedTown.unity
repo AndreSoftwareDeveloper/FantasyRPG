@@ -9108,7 +9108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1363479560}
   m_Layer: 0
-  m_Name: DEMO_Diorama
+  m_Name: village
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14863,7 +14863,7 @@ GameObject:
   - component: {fileID: 95716039620460204}
   - component: {fileID: 1564318435}
   m_Layer: 0
-  m_Name: ork berserk prefab
+  m_Name: ork berserk
   m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
