@@ -54,13 +54,8 @@ public class MovementStateManager : MonoBehaviour
         // Cast a ray towards Z axis from the player's position
         RaycastHit hit;
         if (isAttacking && Physics.Raycast(playerPosition, transform.forward, out hit))                    
-            if (hit.collider.CompareTag("enemy")) // Check if object with tag "enemy" was hitten
-            {
-                Debug.Log("Hit");
-                enemy = hit.collider.gameObject;
-            }
-                           
-        
+            if (hit.collider.CompareTag("enemy"))          // Check if object with tag "enemy" was hit.            
+                hit.collider.gameObject.GetComponent<enemyHealth>().takeDamage(10);       
     }
 
     public void SwitchState(MovementBaseState state) {

@@ -13,7 +13,10 @@ public class enemyHealth : MonoBehaviour
     {
         rgdlManager = GetComponent<ragdollManager>();
         animator = this.GetComponent<Animator>();
-        //starText = GetComponent<fragCounter>();
+    }
+
+    private void Update() {
+        Debug.Log(health);
     }
 
     public void takeDamage(float damage)
@@ -23,16 +26,12 @@ public class enemyHealth : MonoBehaviour
             health -= damage;
             if (health <= 0)
                 enemyDeath();
-            Debug.Log("Hit");
         }
     }
 
     void enemyDeath()
     {
-        rgdlManager.TriggerRagdoll();
+        animator.Play("death");
         killed_enemies++;
-        Debug.Log(killed_enemies);
-
-        animator.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load("None", typeof(RuntimeAnimatorController));
     }
 }
